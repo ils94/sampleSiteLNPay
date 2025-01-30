@@ -147,3 +147,40 @@ button:active {
         max-width: 80%;
     }
 }
+
+#input-explanation {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+}
+
+#input-explanation h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+#input-explanation p {
+    font-size: 16px;
+    color: #555;
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+#input-explanation strong {
+    color: #222;
+    font-weight: 600;
+}
+
+#input-explanation p:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+

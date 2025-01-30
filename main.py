@@ -93,7 +93,7 @@ def payment_success():
         payment_status.pop(invoice)
 
     heading = request.args.get('heading', 'Payment Completed!')
-    message = request.args.get('message', 'Your purchase order has been placed!')
+    message = request.args.get('message', 'Thank you for testing 😀!')
 
     return render_template('payment_success.html', title="Success", heading=heading, message=message)
 
