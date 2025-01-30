@@ -14,8 +14,17 @@
          <input type="text" id="amount_fiat" required><br>
          <label>Lightning Address:</label>
          <input type="text" id="ln_address" required><br>
+         <label>Description:</label>
+         <input type="text" id="description" required><br>
+         <label>Correlation ID:</label>
+         <div style="display: flex; align-items: center;">
+            <input type="text" id="correlation_id" required>
+            <button type="button" id="generate_correlation" style="margin-left: 10px;">Generate</button>
+         </div>
+         <br>
          <button type="submit">Generate Invoice</button>
       </form>
+      <script src="{{ url_for('static', filename='random.js') }}"></script>
       <script src="{{ url_for('static', filename='payment.js') }}"></script>
    </body>
 </html>

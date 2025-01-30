@@ -4,6 +4,8 @@ $(document).ready(function() {
 
         let amount_fiat = $("#amount_fiat").val();
         let ln_address = $("#ln_address").val();
+        let description = $("#description").val();
+        let correlation_id = $("#correlation_id").val();
 
         if (!amount_fiat || !ln_address) {
             alert("Please fill in both fields.");
@@ -17,7 +19,9 @@ $(document).ready(function() {
             contentType: "application/json",
             data: JSON.stringify({
                 amount_fiat: amount_fiat,
-                ln_address: ln_address
+                ln_address: ln_address,
+                description: description,
+                correlation_id: correlation_id
             }),
             success: function(response) {
                 const queryParams = new URLSearchParams({
