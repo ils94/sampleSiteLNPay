@@ -1,13 +1,13 @@
-$(document).ready(function () {
-    $("#payment-form").submit(function (event) {
-        event.preventDefault();  // Prevent page reload
+$(document).ready(function() {
+    $("#payment-form").submit(function(event) {
+        event.preventDefault(); // Prevent page reload
 
         let fiat = $("#fiat").val();
         let ln_address = $("#ln_address").val();
 
         if (!fiat || !ln_address) {
             alert("Please fill in both fields.");
-            return;  // Stop execution if any field is missing
+            return; // Stop execution if any field is missing
         }
 
         // Make the AJAX request to the backend
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 amount: fiat,
                 ln_address: ln_address
             }),
-            success: function (response) {
+            success: function(response) {
                 const queryParams = new URLSearchParams({
                     amount_btc: response.amount_btc,
                     time: response.time,
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                 window.location.href = "qr_code.html?" + queryParams;
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 console.log('Error:', xhr);
                 alert("Error: " + xhr.responseJSON.message);
             }
