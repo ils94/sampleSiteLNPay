@@ -15,11 +15,11 @@ def index():
 def submit():
     data = request.get_json()
 
-    if not data or 'amount' not in data or 'ln_address' not in data:
+    if not data or 'amount_fiat' not in data or 'ln_address' not in data:
         return jsonify({"message": "Invalid data", "status": "error"}), 400
 
     try:
-        amount = float(data['amount'])
+        amount = float(data['amount_fiat'])
     except ValueError:
         return jsonify({"message": "Amount is not a valid number", "status": "error"}), 400
 

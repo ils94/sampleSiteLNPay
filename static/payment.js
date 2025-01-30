@@ -2,10 +2,10 @@ $(document).ready(function() {
     $("#payment-form").submit(function(event) {
         event.preventDefault(); // Prevent page reload
 
-        let fiat = $("#fiat").val();
+        let amount_fiat = $("#amount_fiat").val();
         let ln_address = $("#ln_address").val();
 
-        if (!fiat || !ln_address) {
+        if (!amount_fiat || !ln_address) {
             alert("Please fill in both fields.");
             return; // Stop execution if any field is missing
         }
@@ -16,7 +16,7 @@ $(document).ready(function() {
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                amount: fiat,
+                amount_fiat: amount_fiat,
                 ln_address: ln_address
             }),
             success: function(response) {
