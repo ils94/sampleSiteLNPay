@@ -20,14 +20,6 @@
         <button type="submit">Generate Invoice</button>
     </form>
 
-    <div id="qr-container" style="display:none; margin-top: 20px;">
-        <h2>Invoice</h2>
-        <p>Amount: <span id="amount_btc"></span> sats</p>
-        <p>Expires in: <span id="time"></span> seconds</p>
-        <img id="qr_code" alt="QR Code">
-        <p>Invoice: <span id="invoice"></span></p>
-    </div>
-
     <script src="{{ url_for('static', filename='payment.js') }}"></script>
 </body>
 </html>
