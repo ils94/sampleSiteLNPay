@@ -75,12 +75,12 @@ def webhook():
 
 @app.route('/check_payment_status')
 def check_payment_status():
-    invoice_id = request.args.get('invoice_id')
+    invoice = request.args.get('invoice')
 
-    if not invoice_id:
+    if not invoice:
         return jsonify({"message": "Invoice ID required", "status": "error"}), 400
 
-    return jsonify({"invoice_id": invoice_id, "success": payment_status.get(invoice_id, False)})
+    return jsonify({"invoice_id": invoice, "success": payment_status.get(invoice, False)})
 
 
 @app.route('/payment_success')
