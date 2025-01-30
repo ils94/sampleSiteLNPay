@@ -57,7 +57,7 @@ def qr_code():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
-    print(f"🔔 Webhook received: {data}")
+    print(f"Webhook received: {data}")
 
     if not data or 'invoice' not in data:
         print("Webhook has wrong data!")
