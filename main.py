@@ -39,7 +39,7 @@ def submit():
     return jsonify({
         "invoice_id": invoice_id,
         "time": response_data['data']['expiration_time'],
-        "amount_sats": response_data['data']['quote']['sourceAmount']['amount'],
+        "amount_btc": response_data['data']['quote']['sourceAmount']['amount'],
         "qr_code": response_data['data']['qr_code'],
         "invoice": invoice_id
     })
@@ -47,12 +47,12 @@ def submit():
 
 @app.route('/qr_code.html')
 def qr_code():
-    amount_sats = request.args.get('amount_sats')
+    amount_btc = request.args.get('amount_btc')
     time = request.args.get('time')
     qr_code = request.args.get('qr_code')
     invoice = request.args.get('invoice')
 
-    return render_template('qr_code.html', amount_sats=amount_sats, time=time, qr_code=qr_code, invoice=invoice)
+    return render_template('qr_code.html', amount_btc=amount_btc, time=time, qr_code=qr_code, invoice=invoice)
 
 
 @app.route('/webhook', methods=['POST'])
