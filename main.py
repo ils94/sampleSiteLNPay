@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-payment_status = {}  # Store payment status per invoice
+payment_status = {}
 
 
 @app.route('/')
@@ -57,18 +57,18 @@ def qr_code():
 @app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
-    print(f"🔔 Webhook recebido: {data}")  # Log para ver se o webhook chegou
+    print(f"🔔 Webhook received: {data}")
 
     if not data or 'invoice' not in data:
-        print("❌ Dados inválidos recebidos no webhook!")
+        print("Webhook has wrong data!")
         return jsonify({"message": "Invalid data", "status": "error"}), 400
 
     invoice = data['invoice']
 
     if data.get('status') == 'success':
-        print(f"✅ Pagamento confirmado para {invoice}")
-        payment_status[invoice] = True  # Atualiza o status do pagamento
-        print(f"📌 Novo status: {payment_status}")  # Verifica se está sendo salvo corretamente
+        print(f"Payment confirmed for {invoice}")
+        payment_status[invoice] = True
+        print(f"New status: {payment_status}")
 
     return jsonify({"message": "Webhook received", "status": "success"}), 200
 
@@ -92,8 +92,9 @@ def payment_success():
     if invoice in payment_status:
         payment_status.pop(invoice)
 
-    heading = request.args.get('heading', 'Pagamento Realizado!')
-    message = request.args.get('message', 'Sua ordem de compra já foi efetuada!')
+    heading = request.args.get('heading', 'Payment Completed!')
+    message = request.args.get('message', 'Your purchase order has been placed!')
+
     return render_template('payment_success.html', title="Success", heading=heading, message=message)
 
 
