@@ -85,12 +85,12 @@ def check_payment_status():
 
 @app.route('/payment_success')
 def payment_success():
-    invoice_id = request.args.get('invoice_id')
+    invoice = request.args.get('invoice')
 
-    print(f"invoice: {invoice_id}")
+    print(f"invoice: {invoice}")
 
-    if invoice_id in payment_status:
-        payment_status.pop(invoice_id)  # 🛑 REMOVE A ENTRADA DA MEMÓRIA!
+    if invoice in payment_status:
+        payment_status.pop(invoice)
 
     heading = request.args.get('heading', 'Pagamento Realizado!')
     message = request.args.get('message', 'Sua ordem de compra já foi efetuada!')
