@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightning Invoice</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Lightning Payment</h1>
+
+    <form id="payment-form">
+        <label>Amount (sats):</label>
+        <input type="text" id="amount" required><br>
+
+        <label>Lightning Address:</label>
+        <input type="text" id="ln_address" required><br>
+
+        <button type="submit">Generate Invoice</button>
+    </form>
+
+    <div id="qr-container" style="display:none; margin-top: 20px;">
+        <h2>Invoice</h2>
+        <p>Amount: <span id="amount_sats"></span> sats</p>
+        <p>Expires in: <span id="time"></span> seconds</p>
+        <img id="qr_code" alt="QR Code">
+        <p>Invoice: <span id="invoice"></span></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='payment.js') }}"></script>
+</body>
+</html>

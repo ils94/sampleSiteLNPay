@@ -1,0 +1,149 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #388e3c;
+}
+
+/* Response Box Styles */
+#response {
+    margin-top: 20px;
+    font-family: monospace, 'Courier New', sans-serif;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+    display: none;
+}
+
+/* QR Code and Invoice Box Styles */
+#qrCode {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    max-height: 50vh;
+    margin-top: 20px;
+}
+
+#invoice {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 60%;
+    overflow: auto;
+    text-align: left;
+    word-wrap: break-word;
+    margin: 20px auto;
+}
+
+/* Checkmark Styles */
+.checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid green;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.checkmark::after {
+    content: '';
+    width: 30px;
+    height: 15px;
+    border: solid green;
+    border-width: 0 0 5px 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: drawCheck 0.5s ease-in-out forwards;
+}
+
+@keyframes drawCheck {
+    from {
+        width: 0;
+        height: 0;
+    }
+    to {
+        width: 30px;
+        height: 15px;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    #invoice {
+        max-width: 90%;
+    }
+
+    #qrCode {
+        max-width: 80%;
+    }
+}

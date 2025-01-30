@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2 id="time">Expiration: {{ time }} minutes</h2>
+<h2 id="amountSats">Value in BTC: {{ amount_sats }}</h2>
+<img id="qrCode" src="data:image/png;base64,{{ qr_code }}" alt="QR Code"/>
+<h2>Invoice</h2>
+<div id="invoice">
+    <pre>{{ invoice }}</pre>
+</div>
+
+<script src="{{ url_for('static', filename='qr_code.js') }}"></script>
+</body>
+</html>
