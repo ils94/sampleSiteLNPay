@@ -33,15 +33,14 @@ def submit():
     if 'data' not in response_data:
         return jsonify({"message": "Invalid API response", "status": "error"}), 500
 
-    invoice_id = response_data['data']['quote']['lnInvoice']  # Use invoice as ID
-    payment_status[invoice_id] = False  # Initialize status as unpaid
+    invoice = response_data['data']['quote']['lnInvoice']  # Use invoice as ID
+    payment_status[invoice] = False  # Initialize status as unpaid
 
     return jsonify({
-        "invoice_id": invoice_id,
         "time": response_data['data']['expiration_time'],
         "amount_btc": response_data['data']['quote']['sourceAmount']['amount'],
         "qr_code": response_data['data']['qr_code'],
-        "invoice": invoice_id
+        "invoice": invoice
     })
 
 
@@ -64,11 +63,11 @@ def webhook():
         print("❌ Dados inválidos recebidos no webhook!")
         return jsonify({"message": "Invalid data", "status": "error"}), 400
 
-    invoice_id = data['invoice']
+    invoice = data['invoice']
 
     if data.get('status') == 'success':
-        print(f"✅ Pagamento confirmado para {invoice_id}")
-        payment_status[invoice_id] = True  # Atualiza o status do pagamento
+        print(f"✅ Pagamento confirmado para {invoice}")
+        payment_status[invoice] = True  # Atualiza o status do pagamento
         print(f"📌 Novo status: {payment_status}")  # Verifica se está sendo salvo corretamente
 
     return jsonify({"message": "Webhook received", "status": "success"}), 200
