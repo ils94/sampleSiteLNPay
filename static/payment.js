@@ -7,7 +7,7 @@ $(document).ready(function() {
         let description = $("#description").val();
         let correlation_id = $("#correlation_id").val();
 
-        if (!amount_fiat || !ln_address) {
+        if (!amount_fiat || !ln_address || !description || !correlation_id) {
             alert("Please fill in both fields.");
             return; // Stop execution if any field is missing
         }
