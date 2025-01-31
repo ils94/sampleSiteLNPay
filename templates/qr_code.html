@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
-    <h2 id="time">Expiration: {{ time }} minutes</h2>
-    <h2 id="amount_btc">Value in BTC: {{ amount_btc }}</h2>
-    <img id="qrCode" src="data:image/png;base64,{{ qr_code }}" alt="QR Code" />
-    <h2>Invoice</h2>
-    <div id="invoice">
-      <pre>{{ invoice }}</pre>
+    <div id="content">
+      <h2 id="time">Expiration: {{ time }} minutes</h2>
+      <h2 id="amount_btc">Value in BTC: {{ amount_btc }}</h2>
+      <img id="qrCode" src="data:image/png;base64,{{ qr_code }}" alt="QR Code" />
+      <h2>Invoice</h2>
+      <div id="invoice">
+        <pre>{{ invoice }}</pre>
+      </div>
     </div>
-    <script src="{{ url_for('static', filename='qr_code.js') }}"></script>
+
+    <div id="expired-message" style="display: none; text-align: center; margin-top: 20%;">
+      <h1 style="font-size: 48px; color: red;">This invoice has expired. Please generate a new one.</h1>
+    </div>
+
     <script>
       // Get the expiration time from the element and convert it to Date object
-      const timeElement = document.getElementById('time');
+      const timeElement = document.getElementById("time");
+      const contentElement = document.getElementById("content");
+      const expiredMessageElement = document.getElementById("expired-message");
+
       const expirationTimeStr = '{{ time }}'; // This will be replaced by Flask with the actual time
       const expirationTime = new Date(expirationTimeStr);
 
       function updateTimeLeft() {
-        // Get current time in the same format
         const currentTime = new Date();
-        // Calculate difference in milliseconds (REVERSED HERE)
         const timeDiff = expirationTime - currentTime;
-        // Convert to minutes and seconds
         const totalSeconds = Math.floor(timeDiff / 1000);
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
-        // Format the time with leading zeros if needed
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        // Update the display (changed condition to check totalSeconds)
+        const formattedTime = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+
         if (totalSeconds >= 0) {
           timeElement.textContent = `Expiration: ${formattedTime}`;
         } else {
-          timeElement.textContent = 'Expired';
-          clearInterval(timerInterval); // Stop the timer when expired
+          timeElement.textContent = "Expired";
+          contentElement.style.display = "none";
+          expiredMessageElement.style.display = "block";
+          clearInterval(timerInterval);
         }
       }
-      // Update immediately and then every second
+
       updateTimeLeft();
       const timerInterval = setInterval(updateTimeLeft, 1000);
     </script>
