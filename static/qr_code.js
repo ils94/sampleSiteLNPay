@@ -18,4 +18,4 @@ function checkPaymentStatus() {
     });
 }
 
-setInterval(checkPaymentStatus, 5000);
+setInterval(checkPaymentStatus, 3000);
